@@ -1,0 +1,8 @@
+{
+  "name": "bcnation",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "pro_id": "47f06810"
+}
