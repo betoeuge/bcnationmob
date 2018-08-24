@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar  color="gold">
+    <ion-searchbar (ionInput)="getSpeakers($event)"></ion-searchbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-spinner *ngIf="loading"></ion-spinner>
+  <ion-list>
+    <ion-item-sliding *ngFor="let speaker of speakers">
+      <button ion-item (click)="openItem(item)">
+      <ion-avatar item-start>
+        <img src="https://www.bcnation.com/static/pictures/{{speaker.photo}}">
+      </ion-avatar>
+      <h2 ion-text color="gold">{{ speaker.first_name | uppercase }} {{ speaker.last_name | uppercase }}</h2>
+      <p>{{ speaker.job_title }}<br><b>{{ speaker.company }}</b></p>
+      </button>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
