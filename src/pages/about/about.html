@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="gold">
     <ion-title>
       About
     </ion-title>
@@ -7,5 +7,15 @@
 </ion-header>
 
 <ion-content padding>
+
+<ion-card *ngFor="let val of about">
+  <img src="{{val.src}}">
+  <ion-card-content>
+    <ion-card-title>
+      <h1 ion-text color="gold" style="white-space: normal;">{{val.title}}</h1>
+    </ion-card-title>
+    <p [innerHTML]=val.content></p>
+  </ion-card-content>
+</ion-card>
 
 </ion-content>

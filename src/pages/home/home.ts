@@ -16,14 +16,14 @@ export class HomePage {
   media: any[] = [];
   showspeakers: boolean = false;
   showsponsors: boolean = false;
+  pushSpeakers = SpeakersPage;
+  pushSponsors = SponsorsPage;
 
   constructor(
   	public navCtrl: NavController,
   	public bcnationService: BcnationRestProvider,
   	public loadingController:LoadingController
   	) {
-    this.pushSpeakers = SpeakersPage; 
-  	this.pushSponsors = SponsorsPage;
   }
 
   ionViewDidLoad(){

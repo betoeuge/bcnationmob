@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, LoadingController } from 'ionic-angular';
+import { BcnationRestProvider } from '../../providers/bcnation-rest/bcnation-rest';
 
 @Component({
   selector: 'page-about',
@@ -7,8 +8,30 @@ import { NavController } from 'ionic-angular';
 })
 export class AboutPage {
 
-  constructor(public navCtrl: NavController) {
+	about: any[] = [];
+
+  constructor(
+  	public navCtrl: NavController,
+  	public bcnationService: BcnationRestProvider,
+  	public loadingController:LoadingController
+  	) {
 
   }
+
+  ionViewDidLoad() {
+    let loading = this.loadingController.create({content : "Getting Info, please wait..."});
+    loading.present();
+    this.bcnationService.getAbout()
+    .subscribe(
+      (data) => { // Success
+      	loading.dismissAll();
+        this.about = data['about'];
+      },
+      (error) =>{
+        console.error(error);
+      }
+    )
+  }
+
 
 }
