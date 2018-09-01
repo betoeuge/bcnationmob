@@ -44,7 +44,6 @@ export class SponsorsPage {
     this.bcnationService.getMedia()
     .subscribe(
       (data) => { // Success
-        loading.dismissAll();
         this.media = data['media'];
       },
       (error) =>{

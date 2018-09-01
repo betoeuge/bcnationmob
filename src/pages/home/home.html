@@ -27,9 +27,7 @@
     <ion-card-title>
       <h1 ion-text color="gold" style="white-space: normal;">{{val.sub_title}}</h1>
     </ion-card-title>
-    <p>
-     {{val.content}}
-    </p>
+    <p [innerHTML]=val.content></p>
   </ion-card-content>
 </ion-card>
 
@@ -64,9 +62,11 @@
   </ion-card-header>
 
   <ion-grid *ngIf="showsponsors">
-    <ion-row>
+    <ion-row align-items-center>
       <ion-col *ngFor="let sponsor of sponsors" col-3>
-        <img src="https://static.bcnation.com/pictures/{{sponsor.photo}}">
+        <ion-card>
+          <img src="https://static.bcnation.com/pictures/{{sponsor.photo}}">
+        </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -76,6 +76,32 @@
       <button ion-button icon-start clear small [navPush]="pushSponsors">
         <ion-icon name="briefcase"></ion-icon>
         <div>Show all sponsors</div>
+      </button>
+    </ion-col>
+  </ion-row>
+
+</ion-card>
+
+<ion-card *ngIf="showsponsors">
+  <ion-card-header>
+    <h2 ion-text color="blue">Media Partners</h2>
+  </ion-card-header>
+
+  <ion-grid *ngIf="showsponsors">
+    <ion-row align-items-center>
+      <ion-col *ngFor="let sponsor of media" col-3>
+        <ion-card>
+          <img src="https://static.bcnation.com/pictures/{{sponsor.photo}}">
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+    <ion-row>
+    <ion-col>
+      <button ion-button icon-start clear small [navPush]="pushSponsors">
+        <ion-icon name="desktop"></ion-icon>
+        <div>Show all media partners</div>
       </button>
     </ion-col>
   </ion-row>

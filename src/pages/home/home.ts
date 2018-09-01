@@ -68,6 +68,16 @@ export class HomePage {
       }
     )
 
+    this.bcnationService.getTopMedia()
+    .subscribe(
+      (data) => { // Success
+        this.media = data['media'];
+      },
+      (error) =>{
+        console.error(error);
+      }
+    )
+
   }
 
 }

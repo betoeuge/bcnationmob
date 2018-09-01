@@ -46,5 +46,9 @@ export class BcnationRestProvider {
    return this.http.get('https://www.bcnation.com/rest_api/topMedia'); 
   }
 
+  getAbout(){
+   return this.http.get('https://www.bcnation.com/rest_api/about'); 
+  }
+
 }
 
