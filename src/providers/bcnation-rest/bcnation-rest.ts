@@ -11,11 +11,40 @@ import { Injectable } from '@angular/core';
 export class BcnationRestProvider {
 
   constructor(public http: HttpClient) {
-    console.log('Hello BcnationRestProvider Provider');
+    //console.log('Hello BcnationRestProvider Provider');
   }
 
   getSpeakers(){
-  	return this.http.get('https://www.bcnation.com/rest_api/speakers');
+    return this.http.get('https://www.bcnation.com/rest_api/speakers');
+  }
+
+  getSponsors(){
+    return this.http.get('https://www.bcnation.com/rest_api/sponsors');
+  }
+
+  getMedia(){
+  	return this.http.get('https://www.bcnation.com/rest_api/media'); 
+  }
+
+  getHome(){
+    return this.http.get('https://www.bcnation.com/rest_api/home');
+  }
+
+  getNews(){
+  	return this.http.get('https://www.bcnation.com/rest_api/news');
+  }
+
+  getTopSpeakers(){
+   return this.http.get('https://www.bcnation.com/rest_api/topSpeakers'); 
+  }
+
+  getTopSponsors(){
+   return this.http.get('https://www.bcnation.com/rest_api/topSponsors'); 
+  }
+
+  getTopMedia(){
+   return this.http.get('https://www.bcnation.com/rest_api/topMedia'); 
   }
 
 }
+

@@ -1,6 +1,6 @@
 <ion-header>
-  <ion-navbar  color="gold">
-    <ion-searchbar (ionInput)="getSpeakers($event)"></ion-searchbar>
+  <ion-navbar color="gold">
+    <ion-searchbar (ionInput)="searchSpeakers($event)"></ion-searchbar>
   </ion-navbar>
 </ion-header>
 
@@ -8,9 +8,9 @@
   <ion-spinner *ngIf="loading"></ion-spinner>
   <ion-list>
     <ion-item-sliding *ngFor="let speaker of speakers">
-      <button ion-item (click)="openItem(item)">
+      <button ion-item (click)="openItem(speaker)">
       <ion-avatar item-start>
-        <img src="https://www.bcnation.com/static/pictures/{{speaker.photo}}">
+        <img src="https://static.bcnation.com/pictures/{{speaker.photo}}">
       </ion-avatar>
       <h2 ion-text color="gold">{{ speaker.first_name | uppercase }} {{ speaker.last_name | uppercase }}</h2>
       <p>{{ speaker.job_title }}<br><b>{{ speaker.company }}</b></p>

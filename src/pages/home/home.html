@@ -1,27 +1,85 @@
 <ion-header>
 <ion-toolbar color="gold">
-  <button ion-button menuToggle left>
+  <!--<button ion-button menuToggle left>
     <ion-icon name="menu"></ion-icon>
-  </button>
+  </button>-->
   <ion-title>
     Blockchain Nation
   </ion-title>
-  <ion-buttons end>
+  <!--<ion-buttons end>
     <button ion-button>
       <ion-icon name="chatboxes"></ion-icon>
     </button>
-  </ion-buttons>
+  </ion-buttons>-->
 </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content>
+<ion-card *ngFor="let val of home">
+  <ion-item>
+    <h2 ion-text color="blue">{{val.title}}</h2>
+  </ion-item>
+  <video *ngIf="val.type == 'video'" width="100%" [hidden]="false" [autoplay]="true" muted="true" playsinline="playsinline" looped preload="auto" poster="{{val.poster}}" webkit-playsinline="webkit-playsinline" >
+    <source src="{{val.src}}" type="video/mp4">
+  </video>
+  <img *ngIf="val.type == 'image'" src="{{val.src}}">
+  <ion-card-content>
+    <ion-card-title>
+      <h1 ion-text color="gold" style="white-space: normal;">{{val.sub_title}}</h1>
+    </ion-card-title>
+    <p>
+     {{val.content}}
+    </p>
+  </ion-card-content>
+</ion-card>
+
+<ion-card *ngIf="showspeakers">
+  <ion-card-header>
+    <h2 ion-text color="blue">Our Speakers</h2>
+  </ion-card-header>
+
+  <ion-scroll scrollX="true" direction="x">
+    <ion-card *ngFor="let speaker of speakers" class="horizontal">
+      <ion-card-content>
+        <img src="https://static.bcnation.com/pictures/{{speaker.photo}}">
+        <p ion-text color="gold">{{ speaker.first_name | uppercase }}<br> {{ speaker.last_name | uppercase }}</p>
+      </ion-card-content>
+    </ion-card>
+  </ion-scroll>
+
+    <ion-row>
+    <ion-col>
+      <button ion-button icon-start clear small [navPush]="pushSpeakers">
+        <ion-icon name="people"></ion-icon>
+        <div>Show all speakers</div>
+      </button>
+    </ion-col>
+  </ion-row>
+
+</ion-card>
+
+<ion-card *ngIf="showsponsors">
+  <ion-card-header>
+    <h2 ion-text color="blue">Our Sponsors</h2>
+  </ion-card-header>
+
+  <ion-grid *ngIf="showsponsors">
+    <ion-row>
+      <ion-col *ngFor="let sponsor of sponsors" col-3>
+        <img src="https://static.bcnation.com/pictures/{{sponsor.photo}}">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+    <ion-row>
+    <ion-col>
+      <button ion-button icon-start clear small [navPush]="pushSponsors">
+        <ion-icon name="briefcase"></ion-icon>
+        <div>Show all sponsors</div>
+      </button>
+    </ion-col>
+  </ion-row>
+
+</ion-card>
+
 </ion-content>

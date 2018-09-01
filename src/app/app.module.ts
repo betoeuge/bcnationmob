@@ -8,12 +8,17 @@ import { SpeakersPage } from '../pages/speakers/speakers';
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { TabsPage } from '../pages/tabs/tabs';
+import { NewsPage } from '../pages/news/news';
+import { SpeakersDetailsPage } from '../pages/speakers/speakers';
+import { SponsorsPage } from '../pages/sponsors/sponsors'; 
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HttpClientModule } from '@angular/common/http';
 import { BcnationRestProvider } from '../providers/bcnation-rest/bcnation-rest';
+import { TransformProvider } from '../providers/transform/transform';
+import { DataProvider } from '../providers/data/data';
 
 @NgModule({
   declarations: [
@@ -22,7 +27,10 @@ import { BcnationRestProvider } from '../providers/bcnation-rest/bcnation-rest';
     ContactPage,
     HomePage,
     SpeakersPage,
-    TabsPage
+    TabsPage,
+    NewsPage,
+    SpeakersDetailsPage,
+    SponsorsPage
   ],
   imports: [
     BrowserModule,
@@ -36,13 +44,18 @@ import { BcnationRestProvider } from '../providers/bcnation-rest/bcnation-rest';
     ContactPage,
     HomePage,
     SpeakersPage,
-    TabsPage
+    TabsPage,
+    NewsPage,
+    SpeakersDetailsPage,
+    SponsorsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    BcnationRestProvider
+    BcnationRestProvider,
+    TransformProvider,
+    DataProvider
   ]
 })
 export class AppModule {}
