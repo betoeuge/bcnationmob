@@ -50,5 +50,9 @@ export class BcnationRestProvider {
    return this.http.get('https://www.bcnation.com/rest_api/about'); 
   }
 
+  getAgenda(){
+   return this.http.get('https://avilalab.ddns.net/bcnation/rest_api/agenda'); 
+  }
+
 }
 

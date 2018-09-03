@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar color="gold">
+    <ion-title>
+      {{ speaker.first_name }}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<ion-card>
+  <ion-card-header>
+    <h2 ion-text color="gold">{{ speaker.first_name | uppercase }} {{ speaker.last_name | uppercase }}</h2>
+  </ion-card-header>
+  <img src="https://static.bcnation.com/pictures/{{speaker.photo}}">
+  <ion-item>
+  	<p>{{ speaker.job_title }}<br><b>{{ speaker.company }}</b></p>
+  </ion-item>
+  <ion-card-content>
+  	<p [innerHTML]=speaker.summary></p>
+  </ion-card-content>
+</ion-card>
+</ion-content>

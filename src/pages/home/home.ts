@@ -3,6 +3,7 @@ import { NavController, LoadingController } from 'ionic-angular';
 import { BcnationRestProvider } from '../../providers/bcnation-rest/bcnation-rest';
 import { SpeakersPage } from '../speakers/speakers';
 import { SponsorsPage } from '../sponsors/sponsors';
+import { SpeakersDetailsPage } from '../speakers/speakers';
 
 @Component({
   selector: 'page-home',
@@ -14,8 +15,11 @@ export class HomePage {
   speakers: any[] = [];
   sponsors: any[] = [];
   media: any[] = [];
+  agenda_days: any[] = [];
+  agenda: any[] = [];
   showspeakers: boolean = false;
   showsponsors: boolean = false;
+  showagenda: boolean = false;
   pushSpeakers = SpeakersPage;
   pushSponsors = SponsorsPage;
 
@@ -78,6 +82,33 @@ export class HomePage {
       }
     )
 
+    this.bcnationService.getAgenda()
+    .subscribe(
+      (data) => { // Success
+        this.agenda_days = data['days'];
+        this.agenda = data['agenda'];
+        if(data['active']){
+          this.showagenda = true;
+        }
+      },
+      (error) =>{
+        console.error(error);
+      }
+    )
+
   }
+
+  toggleSection(a, i) {
+    this.agenda[a].rooms[i].open = !this.agenda[a].rooms[i].open;
+  }
+ 
+  toggleItem(a, i, j) {
+    this.agenda[a].rooms[i].sesions[j].open = !this.agenda[a].rooms[i].sesions[j].open;
+  }
+
+  openSpeaker(speaker) {
+    this.navCtrl.push(SpeakersDetailsPage, { speaker: speaker });
+  }
+
 
 }
