@@ -28,7 +28,7 @@
     <h1 ion-text color="gold" style="white-space: normal;">{{val.title}}</h1>
   </ion-card-header>
   <ion-card-content>
-  	<p [innerHTML]=val.description></p>
+  	<p (click)="handleClick($event)" [innerHTML]=val.description></p>
   </ion-card-content>
 </ion-card>
 

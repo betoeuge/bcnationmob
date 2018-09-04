@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { BcnationRestProvider } from '../../providers/bcnation-rest/bcnation-rest';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 @Component({
   selector: 'page-news', 
@@ -14,7 +15,8 @@ export class NewsPage {
   	public navCtrl: NavController, 
   	public navParams: NavParams, 
   	public bcnationService: BcnationRestProvider,
-  	public loadingController:LoadingController
+  	public loadingController:LoadingController,
+    private inappBrowse: InAppBrowser
   	) {
   }
 
@@ -31,6 +33,13 @@ export class NewsPage {
         console.error(error);
       }
     )
+  }
+
+  handleClick(event) {
+    if (event.target.tagName == "A") {
+      this.inappBrowse.create(event.target.href);
+      return false;
+    }
   }
 
 }
