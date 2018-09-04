@@ -1,16 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { BcnationRestProvider } from '../../providers/bcnation-rest/bcnation-rest';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
-/**
- * Generated class for the NewsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
-@IonicPage()
 @Component({
   selector: 'page-news', 
   templateUrl: 'news.html',
@@ -45,7 +37,7 @@ export class NewsPage {
 
   handleClick(event) {
     if (event.target.tagName == "A") {
-      this.inappBrowse.create(event.target.href);
+      this.inappBrowse.create(event.target.href, "_blank", "hidden=no,toolbar=yes,location=no,presentationstyle=fullscreen,clearcache=yes,clearsessioncache=yes");
       return false;
     }
   }

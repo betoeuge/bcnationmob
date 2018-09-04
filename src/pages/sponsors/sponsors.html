@@ -14,7 +14,7 @@
         <img src="https://static.bcnation.com/pictures/{{sponsor.photo}}">
       </ion-thumbnail>
       <h2 ion-text color="gold">{{ sponsor.name | uppercase }}</h2>
-      <a *ngIf="sponsor.website" href="{{sponsor.website}}">{{sponsor.website}}</a>
+      <a (click)="handleClick($event)" *ngIf="sponsor.website" href="{{sponsor.website}}">{{sponsor.website}}</a>
     </ion-item>
   	<ion-list-header>
   		Media Partners
@@ -24,7 +24,7 @@
         <img src="https://static.bcnation.com/pictures/{{sponsor.photo}}">
       </ion-thumbnail>
       <h2 ion-text color="gold">{{ sponsor.name | uppercase }}</h2>
-      <a *ngIf="sponsor.website" href="{{sponsor.website}}">{{sponsor.website}}</a>
+      <a (click)="handleClick($event)" *ngIf="sponsor.website" href="{{sponsor.website}}">{{sponsor.website}}</a>
     </ion-item>
   </ion-list>
 </ion-content>
