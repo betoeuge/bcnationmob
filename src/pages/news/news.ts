@@ -37,7 +37,7 @@ export class NewsPage {
 
   handleClick(event) {
     if (event.target.tagName == "A") {
-      this.inappBrowse.create(event.target.href);
+      this.inappBrowse.create(event.target.href, "_blank", "hidden=no,toolbar=yes,location=no,presentationstyle=fullscreen,clearcache=yes,clearsessioncache=yes");
       return false;
     }
   }
