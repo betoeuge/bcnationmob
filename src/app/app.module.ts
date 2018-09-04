@@ -14,6 +14,7 @@ import { SponsorsPage } from '../pages/sponsors/sponsors';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { HttpClientModule } from '@angular/common/http';
 import { BcnationRestProvider } from '../providers/bcnation-rest/bcnation-rest';
@@ -55,7 +56,8 @@ import { DataProvider } from '../providers/data/data';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BcnationRestProvider,
     TransformProvider,
-    DataProvider
+    DataProvider,
+    InAppBrowser
   ]
 })
 export class AppModule {}

@@ -19,7 +19,7 @@
   <ion-item>
     <h2 ion-text color="blue">{{val.title}}</h2>
   </ion-item>
-  <video *ngIf="val.type == 'video'" width="100%" [hidden]="false" [autoplay]="true" muted="true" playsinline="playsinline" looped preload="auto" poster="{{val.poster}}" webkit-playsinline="webkit-playsinline" >
+  <video *ngIf="val.type == 'video'" width="100%" [hidden]="false" [autoplay]="true" muted="true" playsinline="playsinline" autoplay loop muted controls preload="auto" poster="{{val.poster}}" webkit-playsinline="webkit-playsinline" >
     <source src="{{val.src}}" type="video/mp4">
   </video>
   <img *ngIf="val.type == 'image'" src="{{val.src}}">
