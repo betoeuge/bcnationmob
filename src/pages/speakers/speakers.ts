@@ -7,9 +7,11 @@ import { BcnationRestProvider } from '../../providers/bcnation-rest/bcnation-res
 })
 export class SpeakersDetailsPage {
   speaker;
+  static_host;
 
   constructor(params: NavParams) {
     this.speaker = params.data.speaker;
+    this.static_host = params.data.static_host;
   }
 }
 
@@ -21,6 +23,7 @@ export class SpeakersPage {
 
   items: any[] = [];
   speakers: any[] = [];
+  static_host: string = '';
 
   constructor(
   	public navCtrl: NavController,
@@ -37,6 +40,7 @@ export class SpeakersPage {
     .subscribe(
       (data) => { // Success
         loading.dismissAll();
+        this.static_host = data['static_host'];
         this.items = data['speakers'];
         this.speakers = this.items;
       },
@@ -47,7 +51,7 @@ export class SpeakersPage {
   }
 
   openItem(speaker) {
-    this.navCtrl.push(SpeakersDetailsPage, { speaker: speaker });
+    this.navCtrl.push(SpeakersDetailsPage, { speaker: speaker, static_host: this.static_host });
   }
 
   searchSpeakers(ev){

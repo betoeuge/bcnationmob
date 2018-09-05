@@ -10,48 +10,54 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class BcnationRestProvider {
 
+  url_server = 'https://avilalab.ddns.net/bcnation'
+
   constructor(public http: HttpClient) {
     //console.log('Hello BcnationRestProvider Provider');
   }
 
   getSpeakers(){
-    return this.http.get('https://www.dev.bcnation.com/rest_api/speakers');
+    return this.http.get(this.url_server+'/rest_api/speakers');
   }
 
   getSponsors(){
-    return this.http.get('https://www.dev.bcnation.com/rest_api/sponsors');
+    return this.http.get(this.url_server+'/rest_api/sponsors');
   }
 
   getMedia(){
-  	return this.http.get('https://www.dev.bcnation.com/rest_api/media'); 
+  	return this.http.get(this.url_server+'/rest_api/media'); 
   }
 
   getHome(){
-    return this.http.get('https://www.dev.bcnation.com/rest_api/home');
+    return this.http.get(this.url_server+'/rest_api/home');
   }
 
   getNews(){
-  	return this.http.get('https://www.dev.bcnation.com/rest_api/news');
+  	return this.http.get(this.url_server+'/rest_api/news');
   }
 
   getTopSpeakers(){
-   return this.http.get('https://www.dev.bcnation.com/rest_api/topSpeakers'); 
+   return this.http.get(this.url_server+'/rest_api/topSpeakers'); 
   }
 
   getTopSponsors(){
-   return this.http.get('https://www.dev.bcnation.com/rest_api/topSponsors'); 
+   return this.http.get(this.url_server+'/rest_api/topSponsors'); 
   }
 
   getTopMedia(){
-   return this.http.get('https://www.dev.bcnation.com/rest_api/topMedia'); 
+   return this.http.get(this.url_server+'/rest_api/topMedia'); 
   }
 
   getAbout(){
-   return this.http.get('https://www.dev.bcnation.com/rest_api/about'); 
+   return this.http.get(this.url_server+'/rest_api/about'); 
   }
 
   getAgenda(){
-   return this.http.get('https://www.dev.bcnation.com/bcnation/rest_api/agenda'); 
+   return this.http.get(this.url_server+'/rest_api/agenda'); 
+  }
+
+  getShop(){
+   return this.http.get(this.url_server+'/rest_api/shop'); 
   }
 
 }

@@ -18,7 +18,7 @@
 <ion-card *ngFor="let val of news">
 	<ion-item>
 		<ion-avatar item-start>
-          <img src="https://static.bcnation.com/img/logo-solo.png">
+          <img src="{{logo}}">
         </ion-avatar>
 		<h2 ion-text color="blue">{{val.creator}}</h2>
 		<p>{{val.pubDate  | date: 'MM/dd/yyyy H:mm'}}</p>

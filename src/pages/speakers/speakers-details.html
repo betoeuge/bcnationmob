@@ -11,7 +11,7 @@
   <ion-card-header>
     <h2 ion-text color="gold">{{ speaker.first_name | uppercase }} {{ speaker.last_name | uppercase }}</h2>
   </ion-card-header>
-  <img src="https://static.bcnation.com/pictures/{{speaker.photo}}">
+  <img src="{{static_host}}/pictures/{{speaker.photo}}">
   <ion-item>
   	<p>{{ speaker.job_title }}<br><b>{{ speaker.company }}</b></p>
   </ion-item>

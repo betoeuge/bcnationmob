@@ -9,6 +9,7 @@ import { BcnationRestProvider } from '../../providers/bcnation-rest/bcnation-res
 export class AboutPage {
 
 	about: any[] = [];
+  static_host: string = '';
 
   constructor(
   	public navCtrl: NavController,
@@ -25,6 +26,7 @@ export class AboutPage {
     .subscribe(
       (data) => { // Success
       	loading.dismissAll();
+        this.static_host = data['static_host'];
         this.about = data['about'];
       },
       (error) =>{

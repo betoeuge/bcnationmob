@@ -11,6 +11,7 @@ export class SponsorsPage {
 
 	sponsors: any[] = [];
 	media: any[] = [];
+  static_host: string = '';
 
   constructor(
   	public navCtrl: NavController,
@@ -28,6 +29,7 @@ export class SponsorsPage {
     .subscribe(
       (data) => { // Success
         loading.dismissAll();
+        this.static_host = data['static_host'];
         this.sponsors = data['sponsors'];
       },
       (error) =>{
@@ -38,6 +40,7 @@ export class SponsorsPage {
     this.bcnationService.getMedia()
     .subscribe(
       (data) => { // Success
+        this.static_host = data['static_host'];
         this.media = data['media'];
       },
       (error) =>{

@@ -11,7 +11,7 @@
   	</ion-list-header>
     <ion-item *ngFor="let sponsor of sponsors">
       <ion-thumbnail item-start>
-        <img src="https://static.bcnation.com/pictures/{{sponsor.photo}}">
+        <img src="{{static_host}}/pictures/{{sponsor.photo}}">
       </ion-thumbnail>
       <h2 ion-text color="gold">{{ sponsor.name | uppercase }}</h2>
       <a (click)="handleClick($event)" *ngIf="sponsor.website" href="{{sponsor.website}}">{{sponsor.website}}</a>
@@ -21,7 +21,7 @@
   	</ion-list-header>
     <ion-item *ngFor="let sponsor of media">
       <ion-thumbnail item-start>
-        <img src="https://static.bcnation.com/pictures/{{sponsor.photo}}">
+        <img src="{{static_host}}/pictures/{{sponsor.photo}}">
       </ion-thumbnail>
       <h2 ion-text color="gold">{{ sponsor.name | uppercase }}</h2>
       <a (click)="handleClick($event)" *ngIf="sponsor.website" href="{{sponsor.website}}">{{sponsor.website}}</a>

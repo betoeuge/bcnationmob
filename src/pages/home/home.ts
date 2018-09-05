@@ -22,6 +22,7 @@ export class HomePage {
   showagenda: boolean = false;
   pushSpeakers = SpeakersPage;
   pushSponsors = SponsorsPage;
+  static_host: string = '';
 
   constructor(
   	public navCtrl: NavController,
@@ -39,6 +40,7 @@ export class HomePage {
     .subscribe(
       (data) => { // Success
       	loading.dismissAll();
+        this.static_host = data['static_host'];
         this.home = data['home'];
       },
       (error) =>{
@@ -49,6 +51,7 @@ export class HomePage {
     this.bcnationService.getTopSpeakers()
     .subscribe(
       (data) => { // Success
+        this.static_host = data['static_host'];
         this.speakers = data['speakers'];
         if(data['active']){
           this.showspeakers = true;
@@ -62,6 +65,7 @@ export class HomePage {
     this.bcnationService.getTopSponsors()
     .subscribe(
       (data) => { // Success
+        this.static_host = data['static_host'];
         this.sponsors = data['sponsors'];
         if(data['active']){
           this.showsponsors = true;
@@ -75,6 +79,7 @@ export class HomePage {
     this.bcnationService.getTopMedia()
     .subscribe(
       (data) => { // Success
+        this.static_host = data['static_host'];
         this.media = data['media'];
       },
       (error) =>{
@@ -85,6 +90,7 @@ export class HomePage {
     this.bcnationService.getAgenda()
     .subscribe(
       (data) => { // Success
+        this.static_host = data['static_host'];
         this.agenda_days = data['days'];
         this.agenda = data['agenda'];
         if(data['active']){
@@ -107,7 +113,7 @@ export class HomePage {
   }
 
   openSpeaker(speaker) {
-    this.navCtrl.push(SpeakersDetailsPage, { speaker: speaker });
+    this.navCtrl.push(SpeakersDetailsPage, { speaker: speaker, static_host: this.static_host });
   }
 
 

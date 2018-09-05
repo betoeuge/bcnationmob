@@ -10,7 +10,7 @@
     <ion-item-sliding *ngFor="let speaker of speakers">
       <button ion-item (click)="openItem(speaker)">
       <ion-avatar item-start>
-        <img src="https://static.bcnation.com/pictures/{{speaker.photo}}">
+        <img src="{{static_host}}/pictures/{{speaker.photo}}">
       </ion-avatar>
       <h2 ion-text color="gold">{{ speaker.first_name | uppercase }} {{ speaker.last_name | uppercase }}</h2>
       <p>{{ speaker.job_title }}<br><b>{{ speaker.company }}</b></p>

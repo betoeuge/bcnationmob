@@ -10,6 +10,8 @@ import { InAppBrowser } from '@ionic-native/in-app-browser';
 export class NewsPage {
 
   news: any[] = [];
+  logo: string = '';
+  static_host: string = '';
 
   constructor(
   	public navCtrl: NavController, 
@@ -27,6 +29,8 @@ export class NewsPage {
     .subscribe(
       (data) => { // Success
       	loading.dismissAll();
+        this.logo = data['logo']
+        this.static_host = data['static_host']
         this.news = data['rss']['channel']['item'];
       },
       (error) =>{

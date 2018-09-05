@@ -40,7 +40,7 @@
     <ion-card *ngFor="let speaker of speakers" class="horizontal">
       <button ion-item (click)="openSpeaker(speaker)" detail-none>
         <ion-card-content>
-          <img src="https://static.bcnation.com/pictures/{{speaker.photo}}">
+          <img src="{{static_host}}/pictures/{{speaker.photo}}">
           <p ion-text color="gold">{{ speaker.first_name | uppercase }}<br> {{ speaker.last_name | uppercase }}</p>
         </ion-card-content>
       </button>
@@ -67,7 +67,7 @@
     <ion-row align-items-center>
       <ion-col *ngFor="let sponsor of sponsors" col-3>
         <ion-card>
-          <img src="https://static.bcnation.com/pictures/{{sponsor.photo}}">
+          <img src="{{static_host}}/pictures/{{sponsor.photo}}">
         </ion-card>
       </ion-col>
     </ion-row>
@@ -93,7 +93,7 @@
     <ion-row align-items-center>
       <ion-col *ngFor="let sponsor of media" col-3>
         <ion-card>
-          <img src="https://static.bcnation.com/pictures/{{sponsor.photo}}">
+          <img src="{{static_host}}/pictures/{{sponsor.photo}}">
         </ion-card>
       </ion-col>
     </ion-row>
@@ -150,7 +150,7 @@
                     <ion-item *ngFor="let speaker of sesion.speakers; let k = index" detail-none text-wrap class="child-item" style="white-space: normal;">
                       <button ion-item (click)="openSpeaker(speaker)" text-wrap style="white-space: normal;">
                         <ion-avatar item-start>
-                          <img src="https://static.bcnation.com/pictures/{{speaker.photo}}">
+                          <img src="{{static_host}}/pictures/{{speaker.photo}}">
                         </ion-avatar>
                         {{ speaker.first_name | uppercase }} {{ speaker.last_name | uppercase }}
                       </button>

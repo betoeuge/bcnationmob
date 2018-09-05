@@ -11,6 +11,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { NewsPage } from '../pages/news/news';
 import { SpeakersDetailsPage } from '../pages/speakers/speakers';
 import { SponsorsPage } from '../pages/sponsors/sponsors'; 
+import { ShopPage } from '../pages/shop/shop'; 
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -31,7 +32,8 @@ import { DataProvider } from '../providers/data/data';
     TabsPage,
     NewsPage,
     SpeakersDetailsPage,
-    SponsorsPage
+    SponsorsPage,
+    ShopPage
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,8 @@ import { DataProvider } from '../providers/data/data';
     TabsPage,
     NewsPage,
     SpeakersDetailsPage,
-    SponsorsPage
+    SponsorsPage,
+    ShopPage
   ],
   providers: [
     StatusBar,
