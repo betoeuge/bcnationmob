@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class BcnationRestProvider {
 
-  url_server = 'https://avilalab.ddns.net/bcnation'
+  url_server = 'https://www.dev.bcnation.com'
 
   constructor(public http: HttpClient) {
     //console.log('Hello BcnationRestProvider Provider');
