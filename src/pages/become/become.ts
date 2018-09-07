@@ -34,7 +34,7 @@ export class BecomeSponsorPage {
   }
 
   signupSponsor(){
-	let loading = this.loadingController.create({content : "Sendig, please wait..."});
+	let loading = this.loadingController.create({content : "Sending, please wait..."});
 	loading.present();
 
 	var json_data = this.generateData(this.sponsorData);
@@ -110,7 +110,7 @@ export class BecomeMediaPage {
   }
 
   signupSponsor(){
-	let loading = this.loadingController.create({content : "Sendig, please wait..."});
+	let loading = this.loadingController.create({content : "Sending, please wait..."});
 	loading.present();
 
 	var json_data = this.generateData(this.sponsorData);
