@@ -8,6 +8,7 @@
 
 <ion-content padding>
 <ion-card>
+
   <ion-card-header>
     <h2 ion-text color="gold">{{ speaker.first_name | uppercase }} {{ speaker.last_name | uppercase }}</h2>
   </ion-card-header>
@@ -18,5 +19,18 @@
   <ion-card-content>
   	<p [innerHTML]="speaker.summary"></p>
   </ion-card-content>
+
+  <ion-list>
+    <ion-list-header>
+      Presentations
+    </ion-list-header>
+    <ion-item *ngFor="let item of speaker.sesions_speaker">
+      <h2>{{item.date_session  | date: 'MMMM dd'}} {{item.time_from}}, {{item.time_to}}</h2>
+      <p>{{item.name}}: {{item.title}}</p>
+      <button ion-button icon-only clear item-end color="gold" (click)="addToCalendar(item.title, item.name, item.date_session, item.date_session, item.time_from, item.time_to)"><ion-icon name="calendar"></ion-icon></button>
+    </ion-item>
+  </ion-list>
+
 </ion-card>
+
 </ion-content>

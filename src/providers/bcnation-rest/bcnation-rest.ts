@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 /*
@@ -58,6 +58,16 @@ export class BcnationRestProvider {
 
   getShop(){
    return this.http.get(this.url_server+'/rest_api/shop'); 
+  }
+
+  postBecomeSponsor(post){
+    let headers: HttpHeaders = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this.url_server+'/rest_api/becomeSponsor', post, {headers:headers}); 
+  }
+
+  postBecomeMedia(post){
+    return this.http.post(this.url_server+'/rest_api/becomeMedia', post); 
   }
 
 }

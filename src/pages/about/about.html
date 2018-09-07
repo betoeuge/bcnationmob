@@ -16,6 +16,11 @@
     </ion-card-title>
     <p [innerHTML]=val.content></p>
   </ion-card-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-2 *ngFor="let soc of social"><p (click)="handleClick($event)" class="social" [innerHTML]=soc.social></p></ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-card>
 
 </ion-content>

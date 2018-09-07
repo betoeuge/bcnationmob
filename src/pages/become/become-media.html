@@ -1,0 +1,73 @@
+<!--
+  Generated template for the BecomePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="gold">
+    <ion-title>Media Accreditations</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+	<ion-list>
+		<form [formGroup]="sponsorForm">
+
+			<ion-item>
+				<ion-label floating>First Name</ion-label>
+				<ion-input type="text" [(ngModel)]="sponsorData.first_name" formControlName="first_name" [class.error1]="!sponsorForm.controls.first_name.valid && sponsorForm.controls.first_name.dirty"></ion-input>
+			</ion-item>
+
+			<ion-item>
+				<ion-label floating>Last Name</ion-label>
+				<ion-input type="text" [(ngModel)]="sponsorData.last_name" formControlName="last_name" [class.error1]="!sponsorForm.controls.last_name.valid && sponsorForm.controls.last_name.dirty"></ion-input>
+			</ion-item>
+
+			<ion-item>
+				<ion-label floating>Email</ion-label>
+				<ion-input type="email" [(ngModel)]="sponsorData.email" formControlName="email" [class.error1]="!sponsorForm.controls.email.valid && sponsorForm.controls.email.dirty"></ion-input>
+			</ion-item>
+
+			<ion-item>
+				<ion-label floating>Company Website</ion-label>
+				<ion-input type="text" [(ngModel)]="sponsorData.company_website" formControlName="company_website" [class.error1]="!sponsorForm.controls.company_website.valid && sponsorForm.controls.company_website.dirty"></ion-input>
+			</ion-item>
+
+			<ion-item>
+				<ion-label floating>Mobile</ion-label>
+				<ion-input type="number" [(ngModel)]="sponsorData.mobile_number" formControlName="mobile_number" [class.error1]="!sponsorForm.controls.mobile_number.valid && sponsorForm.controls.mobile_number.dirty"></ion-input>
+			</ion-item>
+
+			<ion-item>
+				<ion-label floating>Work Phone</ion-label>
+				<ion-input type="number" [(ngModel)]="sponsorData.work_phone" formControlName="work_phone" [class.error1]="!sponsorForm.controls.work_phone.valid && sponsorForm.controls.work_phone.dirty"></ion-input>
+			</ion-item>
+
+			<ion-item>
+				<ion-label floating>Linkedin Page</ion-label>
+				<ion-input type="text" [(ngModel)]="sponsorData.linkedin_page" formControlName="linkedin_page" [class.error1]="!sponsorForm.controls.linkedin_page.valid && sponsorForm.controls.linkedin_page.dirty"></ion-input>
+			</ion-item>
+
+			<ion-item>
+				<ion-label floating>Company</ion-label>
+				<ion-input type="text" [(ngModel)]="sponsorData.company" formControlName="company" [class.error1]="!sponsorForm.controls.company.valid && sponsorForm.controls.company.dirty"></ion-input>
+			</ion-item>
+
+			<ion-item>
+				<ion-label floating>Job Title</ion-label>
+				<ion-input type="text" [(ngModel)]="sponsorData.job_title" formControlName="job_title" [class.error1]="!sponsorForm.controls.job_title.valid && sponsorForm.controls.job_title.dirty"></ion-input>
+			</ion-item>
+
+		</form>
+	</ion-list>
+
+  <button ion-button outline icon-start block color="gold" [disabled]="!sponsorForm.valid" (click)="signupSponsor()">
+    Submit
+  </button>
+
+</ion-content>

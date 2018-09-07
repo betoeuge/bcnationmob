@@ -4,6 +4,10 @@ import { BcnationRestProvider } from '../../providers/bcnation-rest/bcnation-res
 import { SpeakersPage } from '../speakers/speakers';
 import { SponsorsPage } from '../sponsors/sponsors';
 import { SpeakersDetailsPage } from '../speakers/speakers';
+import { BecomeSponsorPage } from '../become/become';
+import { BecomeMediaPage } from '../become/become';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { Calendar } from '@ionic-native/calendar';
 
 @Component({
   selector: 'page-home',
@@ -27,7 +31,9 @@ export class HomePage {
   constructor(
   	public navCtrl: NavController,
   	public bcnationService: BcnationRestProvider,
-  	public loadingController:LoadingController
+  	public loadingController:LoadingController,
+    private inappBrowse: InAppBrowser,
+    private calendar: Calendar
   	) {
   }
 
@@ -104,6 +110,13 @@ export class HomePage {
 
   }
 
+  handleClick(event) {
+    if (event.target.tagName == "A") {
+      this.inappBrowse.create(event.target.href, "_blank", "hidden=no,toolbar=yes,location=no,presentationstyle=fullscreen,clearcache=yes,clearsessioncache=yes");
+      return false;
+    }
+  }
+
   toggleSection(a, i) {
     this.agenda[a].rooms[i].open = !this.agenda[a].rooms[i].open;
   }
@@ -114,6 +127,24 @@ export class HomePage {
 
   openSpeaker(speaker) {
     this.navCtrl.push(SpeakersDetailsPage, { speaker: speaker, static_host: this.static_host });
+  }
+
+  openBecomeSponsor() {
+    this.navCtrl.push(BecomeSponsorPage);
+  }
+
+  openBecomeMedia() {
+    this.navCtrl.push(BecomeMediaPage);
+  }
+
+  addToCalendar(title, location, dateFrom, dateTo, timeFrom, timeTo){
+    var dateFromAux = dateFrom.split("-");
+    var dateToAux = dateTo.split("-");
+    var timeFromAux = timeFrom.split(":");
+    var timeToAux = timeTo.split(":");
+    var startDate = new Date(dateFromAux[0],dateFromAux[1]-1,dateFromAux[2],timeFromAux[0],timeFromAux[1],0,0);
+    var endDate = new Date(dateToAux[0],dateToAux[1]-1,dateToAux[2],timeToAux[0],timeToAux[1],0,0);
+    this.calendar.createEventInteractively(title, location, '', startDate, endDate);
   }
 
 

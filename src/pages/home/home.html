@@ -27,8 +27,12 @@
     <ion-card-title>
       <h1 ion-text color="gold" style="white-space: normal;">{{val.sub_title}}</h1>
     </ion-card-title>
-    <p [innerHTML]=val.content></p>
+    <p (click)="handleClick($event)" [innerHTML]=val.content></p>
   </ion-card-content>
+    <button *ngIf="val.event" ion-button clear icon-start color="gold" (click)="addToCalendar(val.calendar, val.location, val.dateFrom, val.dateTo, val.timeFrom, val.timeTo)">
+      <ion-icon name='calendar' is-active="false"></ion-icon>
+      Add to calendar
+    </button>
 </ion-card>
 
 <ion-card *ngIf="showspeakers">
@@ -49,7 +53,7 @@
 
     <ion-row>
     <ion-col>
-      <button ion-button icon-start clear small [navPush]="pushSpeakers">
+      <button ion-button icon-start clear small [navPush]="pushSpeakers" color="gold">
         <ion-icon name="people"></ion-icon>
         <div>Show all speakers</div>
       </button>
@@ -57,6 +61,18 @@
   </ion-row>
 
 </ion-card>
+
+<div padding>
+  <button ion-button outline icon-start block color="gold" (click)="openBecomeSponsor()">
+    Become Sponsor
+  </button>
+
+  <br>
+
+  <button ion-button outline icon-start block color="gold" (click)="openBecomeMedia()">
+    Apply for Media Accreditations
+  </button>  
+</div>
 
 <ion-card *ngIf="showsponsors">
   <ion-card-header>
@@ -75,7 +91,7 @@
 
     <ion-row>
     <ion-col>
-      <button ion-button icon-start clear small [navPush]="pushSponsors">
+      <button ion-button icon-start clear small [navPush]="pushSponsors" color="gold">
         <ion-icon name="briefcase"></ion-icon>
         <div>Show all sponsors</div>
       </button>
@@ -101,7 +117,7 @@
 
     <ion-row>
     <ion-col>
-      <button ion-button icon-start clear small [navPush]="pushSponsors">
+      <button ion-button icon-start clear small [navPush]="pushSponsors" color="gold">
         <ion-icon name="desktop"></ion-icon>
         <div>Show all media partners</div>
       </button>
@@ -144,6 +160,10 @@
                     <ion-icon *ngIf="!sesion.has_speaker" name="time" item-start color="gold"></ion-icon>
                     {{sesion.from}} - {{sesion.to}} <b>{{sesion.title}}</b>
                   </ion-item>
+                </button>
+                <button *ngIf="sesion.has_speaker" ion-button clear icon-start color="gold" (click)="addToCalendar(sesion.title, sesion.location, day.date, day.date, sesion.from, sesion.to)">
+                  <ion-icon name='calendar' is-active="false"></ion-icon>
+                  Add to calendar
                 </button>
               <ion-item>
                   <ion-list *ngIf="sesion.speakers && sesion.open">

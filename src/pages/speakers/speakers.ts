@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { BcnationRestProvider } from '../../providers/bcnation-rest/bcnation-rest';
+import { Calendar } from '@ionic-native/calendar';
 
 @Component({
   templateUrl: 'speakers-details.html',
@@ -9,10 +10,22 @@ export class SpeakersDetailsPage {
   speaker;
   static_host;
 
-  constructor(params: NavParams) {
+  constructor(params: NavParams,
+    private calendar: Calendar) {
     this.speaker = params.data.speaker;
     this.static_host = params.data.static_host;
   }
+
+  addToCalendar(title, location, dateFrom, dateTo, timeFrom, timeTo){
+    var dateFromAux = dateFrom.split("-");
+    var dateToAux = dateTo.split("-");
+    var timeFromAux = timeFrom.split(":");
+    var timeToAux = timeTo.split(":");
+    var startDate = new Date(dateFromAux[0],dateFromAux[1]-1,dateFromAux[2],timeFromAux[0],timeFromAux[1],0,0);
+    var endDate = new Date(dateToAux[0],dateToAux[1]-1,dateToAux[2],timeToAux[0],timeToAux[1],0,0);
+    this.calendar.createEventInteractively(title, location, '', startDate, endDate);
+  }
+
 }
 
 @Component({
@@ -64,6 +77,5 @@ export class SpeakersPage {
       this.speakers = this.items;
     }
   }
-
 
 }

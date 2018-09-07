@@ -12,10 +12,13 @@ import { NewsPage } from '../pages/news/news';
 import { SpeakersDetailsPage } from '../pages/speakers/speakers';
 import { SponsorsPage } from '../pages/sponsors/sponsors'; 
 import { ShopPage } from '../pages/shop/shop'; 
+import { BecomeSponsorPage } from '../pages/become/become';
+import { BecomeMediaPage } from '../pages/become/become';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { Calendar } from '@ionic-native/calendar';
 
 import { HttpClientModule } from '@angular/common/http';
 import { BcnationRestProvider } from '../providers/bcnation-rest/bcnation-rest';
@@ -33,7 +36,9 @@ import { DataProvider } from '../providers/data/data';
     NewsPage,
     SpeakersDetailsPage,
     SponsorsPage,
-    ShopPage
+    ShopPage,
+    BecomeSponsorPage,
+    BecomeMediaPage
   ],
   imports: [
     BrowserModule,
@@ -51,7 +56,9 @@ import { DataProvider } from '../providers/data/data';
     NewsPage,
     SpeakersDetailsPage,
     SponsorsPage,
-    ShopPage
+    ShopPage,
+    BecomeSponsorPage,
+    BecomeMediaPage
   ],
   providers: [
     StatusBar,
@@ -60,7 +67,8 @@ import { DataProvider } from '../providers/data/data';
     BcnationRestProvider,
     TransformProvider,
     DataProvider,
-    InAppBrowser
+    InAppBrowser,
+    Calendar
   ]
 })
 export class AppModule {}
