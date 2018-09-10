@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class BcnationRestProvider {
 
-  url_server = 'https://www.dev.bcnation.com'
+  url_server = 'https://www.bcnation.com'
 
   constructor(public http: HttpClient) {
     //console.log('Hello BcnationRestProvider Provider');
@@ -67,7 +67,9 @@ export class BcnationRestProvider {
   }
 
   postBecomeMedia(post){
-    return this.http.post(this.url_server+'/rest_api/becomeMedia', post); 
+    let headers: HttpHeaders = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this.url_server+'/rest_api/becomeMedia', post, {headers:headers}); 
   }
 
 }
