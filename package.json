@@ -64,8 +64,8 @@
       "cordova-plugin-calendar": {}
     },
     "platforms": [
-      "android",
-      "ios"
+      "ios",
+      "android"
     ]
   }
 }
