@@ -1,6 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler, Platform } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { HomePage } from '../pages/home/home';
@@ -71,4 +71,14 @@ import { DataProvider } from '../providers/data/data';
     Calendar
   ]
 })
-export class AppModule {}
+export class AppModule {
+
+  constructor(public plt: Platform, public splashscreen: SplashScreen){
+    this.plt.ready().then((readySource) => {
+      setTimeout(function() {
+        splashscreen.hide();
+      }, 2000);
+    });
+  }
+}
+
