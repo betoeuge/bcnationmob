@@ -14,13 +14,20 @@ import { SponsorsPage } from '../pages/sponsors/sponsors';
 import { ShopPage } from '../pages/shop/shop'; 
 import { BecomeSponsorPage } from '../pages/become/become';
 import { BecomeMediaPage } from '../pages/become/become';
+import { SettingsPage } from '../pages/settings/settings';
+import { ViewTicketPage } from '../pages/settings/settings';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { Calendar } from '@ionic-native/calendar';
-
+import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { Device } from '@ionic-native/device';
 import { HttpClientModule } from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage';
+import { SQLite } from '@ionic-native/sqlite';
+
 import { BcnationRestProvider } from '../providers/bcnation-rest/bcnation-rest';
 import { TransformProvider } from '../providers/transform/transform';
 import { DataProvider } from '../providers/data/data';
@@ -38,12 +45,19 @@ import { DataProvider } from '../providers/data/data';
     SponsorsPage,
     ShopPage,
     BecomeSponsorPage,
-    BecomeMediaPage
+    BecomeMediaPage,
+    SettingsPage,
+    ViewTicketPage
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    NgxQRCodeModule,
+    IonicStorageModule.forRoot({
+      name: '__mydb',
+         driverOrder: ['indexeddb', 'sqlite', 'websql']
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -58,7 +72,9 @@ import { DataProvider } from '../providers/data/data';
     SponsorsPage,
     ShopPage,
     BecomeSponsorPage,
-    BecomeMediaPage
+    BecomeMediaPage,
+    SettingsPage,
+    ViewTicketPage
   ],
   providers: [
     StatusBar,
@@ -68,17 +84,15 @@ import { DataProvider } from '../providers/data/data';
     TransformProvider,
     DataProvider,
     InAppBrowser,
-    Calendar
+    Calendar,
+    BarcodeScanner,
+    Device,
+    SQLite
   ]
 })
 export class AppModule {
 
-  constructor(public plt: Platform, public splashscreen: SplashScreen){
-    this.plt.ready().then((readySource) => {
-      setTimeout(function() {
-        splashscreen.hide();
-      }, 2000);
-    });
+  constructor(){
   }
-}
 
+}

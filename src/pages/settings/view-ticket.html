@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar color="gold">
+    <ion-title>
+      {{ ticket.ticket_type }}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+<ion-card>
+
+  <ion-card-header>
+    <ion-item>
+      <ion-avatar item-start>
+            <img src="{{static_host}}/pictures/{{ticket.logo}}">
+      </ion-avatar>
+      <h2 ion-text color="blue">{{ticket.ticket_type}}</h2>
+    </ion-item>
+  </ion-card-header>
+  <ngx-qrcode [qrc-value]="ticket.ticket_hash"></ngx-qrcode>
+  <ion-item>
+    <h1 ion-text color="gold" style="white-space: normal;">{{ticket.event}}</h1>
+    <h2 ion-text color="blue">{{ticket.first_name}} {{ticket.last_name}}</h2>
+  </ion-item>
+  <ion-card-content>
+  	<p>{{ticket.date}}<br>{{ticket.location}}</p>
+  </ion-card-content>
+
+
+</ion-card>
+
+</ion-content>
