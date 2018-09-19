@@ -72,5 +72,11 @@ export class BcnationRestProvider {
     return this.http.post(this.url_server+'/rest_api/becomeMedia', post, {headers:headers}); 
   }
 
+  postRegisterDevice(post){
+    let headers: HttpHeaders = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this.url_server+'/rest_api/registerDevice', post, {headers:headers}); 
+  }
+
 }
 
