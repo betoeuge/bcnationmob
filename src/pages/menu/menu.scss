@@ -1,20 +1,11 @@
-page-about {
-	.fa{
-		color: #C1A219;
-	}
-	.social{
-		color: #C1A219;
-		font-size: 25px;
-	}
-	.white{
-		color: #FFFFFF;
-	}
+page-menu {
 	.bg-image{
-        background-image: url('../assets/imgs/bg-page.png');
+        background-image: url('../assets/imgs/bg-menu.png');
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
     }
+
     .item.item-trns {
 		border-color: rgba(0, 0, 0, 0);
 		background-color: rgba(0, 0, 0, 0);

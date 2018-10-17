@@ -1,0 +1,36 @@
+<ion-menu [content]="content">
+  <ion-content class="bg-image">
+
+
+    <ion-list>
+
+      <ion-item *ngIf="!email" class="item item-trns">
+        <ion-avatar item-start>
+          <ion-icon name="contact" item-start color="gold" style="font-size: 50px;"></ion-icon>
+        </ion-avatar>
+        <h2>Guest</h2>
+        <p>No email</p>
+      </ion-item>
+
+      <ion-item *ngIf="email" class="item item-trns">
+        <ion-avatar item-start>
+          <ion-icon name="contact" item-start color="gold" style="font-size: 50px;"></ion-icon>
+        </ion-avatar>
+        <h2>{{first_name}} {{last_name}}</h2>
+        <p>{{email}}</p>
+      </ion-item>
+
+      <ng-container *ngFor="let p of pages">
+        <button *ngIf="showPage(p.showLogin, p.showLogout)" ion-item menuClose (click)="openPage(p)" class="item item-trns">
+          <ion-icon item-start color="gold" [name]="p.icon"></ion-icon>
+          {{ p.title }}
+        </button>
+      </ng-container>
+
+    </ion-list>
+
+  </ion-content>
+</ion-menu>
+ 
+<!-- main navigation -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

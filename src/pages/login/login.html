@@ -1,0 +1,58 @@
+<ion-header>
+<ion-toolbar>
+  <button ion-button menuToggle left>
+    <ion-icon name="menu" color="gold"></ion-icon>
+  </button>
+  <ion-title>
+    Log In
+  </ion-title>
+  <!--<ion-buttons end>
+    <button ion-button>
+      <ion-icon name="chatboxes"></ion-icon>
+    </button>
+  </ion-buttons>-->
+</ion-toolbar>
+</ion-header>
+
+
+<ion-content class="bg-image" padding>
+
+  <ion-card *ngFor="let val of login" class="item item-trns"> 
+    <ion-card-header class="item item-trns">
+      <h1 ion-text color="gold" style="white-space: normal; text-align: center;">{{val.title}}</h1>
+    </ion-card-header>
+    <img src="{{val.src}}">
+  <ion-card-content>
+    <ion-card-title>
+      <h1 ion-text color="white" style="white-space: normal; text-align: center;">{{val.sub_title}}</h1>
+    </ion-card-title>
+  </ion-card-content>
+
+  </ion-card>
+
+  <ion-list class="item item-trns">
+    <form [formGroup]="loginForm">
+
+      <ion-item class="item item-trns">
+        <ion-label floating><ion-icon name="contact" color="gold"></ion-icon>  Email</ion-label>
+        <ion-input type="email" [(ngModel)]="loginData.email" formControlName="email" [class.error1]="!loginForm.controls.email.valid && loginForm.controls.email.dirty"></ion-input>
+      </ion-item>
+
+      <ion-item class="item item-trns">
+        <ion-label floating><ion-icon name="lock" color="gold"></ion-icon>  Password</ion-label>
+        <ion-input type="password" [(ngModel)]="loginData.password" formControlName="password" [class.error1]="!loginForm.controls.password.valid && loginForm.controls.password.dirty"></ion-input>
+      </ion-item>
+
+    </form>
+  </ion-list>
+
+  <button ion-button outline icon-start block color="gold" [disabled]="!loginForm.valid" (click)="logIn()">
+    Log In
+  </button>
+
+  <button ion-button color="gold" clear (click)="forgot()">Forgot Pasword?</button>
+  <br>
+  <button ion-button color="gold" clear (click)="signup()">Don't have an account? Sign Up</button>
+  
+
+</ion-content>

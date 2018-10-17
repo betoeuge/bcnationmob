@@ -1,8 +1,8 @@
 <ion-header>
-<ion-toolbar color="gold">
-  <!--<button ion-button menuToggle left>
-    <ion-icon name="menu"></ion-icon>
-  </button>-->
+<ion-toolbar>
+  <button ion-button menuToggle left>
+    <ion-icon name="menu" color="gold"></ion-icon>
+  </button>
   <ion-title>
     Blockchain Nation
   </ion-title>
@@ -123,65 +123,6 @@
       </button>
     </ion-col>
   </ion-row>
-
-</ion-card>
-
-<ion-card *ngIf="showagenda">
-
-  <ion-card-header>
-    <h2 ion-text color="blue">Agenda</h2>
-  </ion-card-header>
-
-  <div padding>
-    <ion-segment [(ngModel)]="s_agenda">
-      <ion-segment-button *ngFor="let day of agenda_days" value="{{day.date}}">
-        Day {{day.day}}
-      </ion-segment-button>
-    </ion-segment>
-  </div>
-
-  <div [ngSwitch]="s_agenda" *ngFor="let day of agenda; let a = index">
-      
-      <ion-list *ngSwitchCase=day.date class="accordion-list">
-        <ion-list-header *ngFor="let room of day.rooms; let i = index" no-lines text-wrap style="white-space: normal;">
-          <button ion-item (click)="toggleSection(a, i)" detail-none [ngClass]="{'section-active': room.open, 'section': !room.open}" style="white-space: normal;">
-            <ion-icon item-left name="arrow-forward" *ngIf="!room.open"></ion-icon>
-            <ion-icon item-left name="arrow-down" *ngIf="room.open"></ion-icon>
-              {{room.room}}
-          </button>
-          
-            <ion-list *ngIf="room.sesions && room.open" no-lines>
-              <ion-list-header *ngFor="let sesion of room.sesions; let j = index" text-wrap style="white-space: normal;">
-                <button ion-item (click)="toggleItem(a, i, j)" *ngIf="sesion.speakers" class="child" detail-none style="white-space: normal;">
-                  <ion-icon item-left name="add" *ngIf="!sesion.open && sesion.has_speaker"></ion-icon>
-                  <ion-icon item-left name="close" *ngIf="sesion.open && sesion.has_speaker"></ion-icon>
-                  <ion-item style="white-space: normal;">
-                    <ion-icon *ngIf="sesion.has_speaker" name="mic" item-start color="gold"></ion-icon>
-                    <ion-icon *ngIf="!sesion.has_speaker" name="time" item-start color="gold"></ion-icon>
-                    {{sesion.from}} - {{sesion.to}} <b>{{sesion.title}}</b>
-                  </ion-item>
-                </button>
-                <button *ngIf="sesion.has_speaker" ion-button clear icon-start color="gold" (click)="addToCalendar(sesion.title, sesion.location, day.date, day.date, sesion.from, sesion.to)">
-                  <ion-icon name='calendar' is-active="false"></ion-icon>
-                  Add to calendar
-                </button>
-              <ion-item>
-                  <ion-list *ngIf="sesion.speakers && sesion.open">
-                    <ion-item *ngFor="let speaker of sesion.speakers; let k = index" detail-none text-wrap class="child-item" style="white-space: normal;">
-                      <button ion-item (click)="openSpeaker(speaker)" text-wrap style="white-space: normal;">
-                        <ion-avatar item-start>
-                          <img src="{{static_host}}/pictures/{{speaker.photo}}">
-                        </ion-avatar>
-                        {{ speaker.first_name | uppercase }} {{ speaker.last_name | uppercase }}
-                      </button>
-                    </ion-item>
-                  </ion-list>
-              </ion-item>
-            </ion-list-header>
-          </ion-list>
-        </ion-list-header>
-      </ion-list>
-  </div>
 
 </ion-card>
 

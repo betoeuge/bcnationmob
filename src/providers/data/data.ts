@@ -1,27 +1,45 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Storage } from '@ionic/storage';
 
-/*
-  Generated class for the DataProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class DataProvider {
 
-	private newsUrl: string = "https://www.cryptoworldjournal.com/feed/";
-
-  constructor(public http: HttpClient) {
+  constructor(public storage: Storage) {
     
   }
 
-  public getNews() {
-    
-    return this
-      .http
-      .get(this.newsUrl, { responseType: "text" });
-
+  set_data(data){
+    return this.storage.set('data', data)
+    .then(()=>{
+      this.storage.get('data')
+      .then((val)=>{
+        return val;
+      })
+    })
   }
+
+  set_static_host(host){
+    return this.storage.set('static_host', host)
+    .then(()=>{
+      this.storage.get('static_host')
+      .then((val)=>{
+        return val;
+      })
+    })
+  }
+
+  get_data(){
+    return this.storage.get('data')
+    .then((val)=>{
+      return val;
+    })
+  }
+
+  clear_data(){
+    this.storage.clear();
+  }
+
+
 
 }

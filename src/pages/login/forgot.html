@@ -1,0 +1,26 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Forgot Password</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="bg-image" padding>
+
+  <ion-list class="item item-trns">
+    <form [formGroup]="loginForm">
+
+      <ion-item class="item item-trns">
+        <ion-label floating>Email</ion-label>
+        <ion-input type="email" [(ngModel)]="loginData.email" formControlName="email" [class.error1]="!loginForm.controls.email.valid && loginForm.controls.email.dirty"></ion-input>
+      </ion-item>
+
+    </form>
+  </ion-list>
+
+  <button ion-button outline icon-start block color="gold" [disabled]="!loginForm.valid" (click)="sendEmail()">
+    Restore Password
+  </button>
+
+</ion-content>

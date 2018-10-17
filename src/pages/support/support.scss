@@ -1,14 +1,4 @@
-page-about {
-	.fa{
-		color: #C1A219;
-	}
-	.social{
-		color: #C1A219;
-		font-size: 25px;
-	}
-	.white{
-		color: #FFFFFF;
-	}
+page-support {
 	.bg-image{
         background-image: url('../assets/imgs/bg-page.png');
         background-repeat: no-repeat;
@@ -20,4 +10,6 @@ page-about {
 		background-color: rgba(0, 0, 0, 0);
 		color: white; 
 	}
+
+	textarea { max-width: 100%; width: 100%; height: 25vh; }
 }

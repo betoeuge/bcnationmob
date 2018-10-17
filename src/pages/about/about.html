@@ -1,18 +1,26 @@
 <ion-header>
-  <ion-navbar color="gold">
-    <ion-title>
-      About
-    </ion-title>
-  </ion-navbar>
+<ion-toolbar>
+  <button ion-button menuToggle left>
+    <ion-icon name="menu" color="gold"></ion-icon>
+  </button>
+  <ion-title>
+    About
+  </ion-title>
+  <!--<ion-buttons end>
+    <button ion-button>
+      <ion-icon name="chatboxes"></ion-icon>
+    </button>
+  </ion-buttons>-->
+</ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="bg-image">
 
-<ion-card *ngFor="let val of about">
+<ion-card *ngFor="let val of about" class="item item-trns">
   <img src="{{val.src}}">
   <ion-card-content>
     <ion-card-title>
-      <h1 ion-text color="gold" style="white-space: normal;">{{val.title}}</h1>
+      <h1 ion-text color="white" style="white-space: normal; text-align: center;">{{val.title}}</h1>
     </ion-card-title>
     <p [innerHTML]=val.content></p>
   </ion-card-content>

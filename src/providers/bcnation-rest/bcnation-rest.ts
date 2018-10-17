@@ -1,19 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-/*
-  Generated class for the BcnationRestProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class BcnationRestProvider {
 
-  url_server = 'https://www.bcnation.com'
+  url_server = 'https://bcnation.ddns.net';
+  url_server_chat = 'http://bcnation.ddns.net:3001';
 
   constructor(public http: HttpClient) {
-    //console.log('Hello BcnationRestProvider Provider');
   }
 
   getSpeakers(){
@@ -60,6 +54,10 @@ export class BcnationRestProvider {
    return this.http.get(this.url_server+'/rest_api/shop'); 
   }
 
+  getLogin(){
+   return this.http.get(this.url_server+'/rest_api/login'); 
+  }
+
   postBecomeSponsor(post){
     let headers: HttpHeaders = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
@@ -78,5 +76,36 @@ export class BcnationRestProvider {
     return this.http.post(this.url_server+'/rest_api/registerDevice', post, {headers:headers}); 
   }
 
+  postLogin(post){
+    let headers: HttpHeaders = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this.url_server+'/rest_api/verifyLogin', post, {headers:headers}); 
+  }
+
+  postReset(post){
+    let headers: HttpHeaders = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this.url_server+'/rest_api/resetPassword', post, {headers:headers}); 
+  }
+
+  postSignup(post){
+    let headers: HttpHeaders = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this.url_server+'/rest_api/signUp', post, {headers:headers}); 
+  }
+
+  postSupport(post){
+    let headers: HttpHeaders = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post(this.url_server+'/rest_api/support', post, {headers:headers}); 
+  }
+
+  getRooms(post){
+    return this.http.get(this.url_server_chat+'/rooms?nickname='+post.nickname);
+  }
+
+  getChatRoom(post){
+    return this.http.get(this.url_server_chat+'/chat_room?roomkey='+post.roomkey);
+  }
 }
 
