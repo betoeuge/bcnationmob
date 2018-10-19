@@ -1,62 +1,135 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SQLiteObject } from '@ionic-native/sqlite';
+import { Platform } from 'ionic-angular';
+import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-/*
-  Generated class for the DataManagerProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class DataManagerProvider {
 
-	db: SQLiteObject = null;
+  private database: SQLiteObject;
+  private dbReady = new BehaviorSubject<boolean>(false);
 
-  constructor(
-  	public http: HttpClient) {
+  constructor(private platform:Platform, private sqlite:SQLite) { 
+	this.platform.ready().then(()=>{
+      this.sqlite.create({
+        name: 'bcnation.db',
+        location: 'default'
+      })
+      .then((db:SQLiteObject)=>{
+        this.database = db;
+        this.createTables().then(()=>{     
+          this.dbReady.next(true);
+        });
+      })
+
+    });  
   }
 
-	setDatabase(db: SQLiteObject){
-		if(this.db === null){
-			this.db = db;
-		}
-	}
+  private createTables(){
+	return this.database.executeSql(
+      `CREATE TABLE IF NOT EXISTS chat_rooms (
+        id INTEGER PRIMARY KEY,
+        key INTEGER,
+        roomname TEXT
+      );`
+    ,[])
+    .then(()=>{
+      return this.database.executeSql(
+      `CREATE TABLE IF NOT EXISTS chat (
+        id INTEGER PRIMARY KEY,
+        chat_rooms_id INTEGER,
+        type TEXT,
+        username TEXT,
+        message TEXT,
+        send_date TEXT,
+        read INTEGER,
+        FOREIGN KEY(chat_rooms_id) REFERENCES chat_rooms(id)
+        );`,[] )
+    }).catch((err)=>console.log("error creating tables", err));
+  }
 
-  	dropTableTicket(){
-  		let sql = 'DROP TABLE ticket';
-  		this.db.executeSql(sql, [])
-		.then(() => console.log('Executed SQL'))
-		.catch(e => console.log(e));
-  	}
+  private isReady(){
+	return new Promise((resolve, reject) =>{
+      //if dbReady is true, resolve
+      if(this.dbReady.getValue()){
+        resolve();
+      }
+      //otherwise, wait to resolve until dbReady returns true
+      else{
+        this.dbReady.subscribe((ready)=>{
+          if(ready){ 
+            resolve(); 
+          }
+        });
+      }  
+    })
+  }
 
-	createTableTicket(){
-		let sql = 'CREATE TABLE IF NOT EXISTS ticket(id INTEGER PRIMARY KEY AUTOINCREMENT, first_name TEXT, last_name TEXT, email TEXT, ticket_type TEXT, logo TEXT, date TEXT, location TEXT, ticket_hash TEXT)';
-		return this.db.executeSql(sql, [])
-		.then(() => console.log('Table creada'))
-		.catch(e => console.log(e));
-	}
+  getRooms(){
+	return this.isReady()
+    .then(()=>{
+      return this.database.executeSql("SELECT * from chat_rooms", [])
+      .then((data)=>{
+        let lists = [];
+        for(let i=0; i<data.rows.length; i++){
+          lists.push(data.rows.item(i));
+        }
+        return lists;
+      })
+    })  	
+  }
 
-	insertTicket(ticket: any){
-		let sql = 'INSERT INTO ticket(first_name, last_name, email, ticket_type, logo, date, location, ticket_hash)';
-			sql += ' VALUES(?,?,?,?,?,?,?,?)';
-		return this.db.executeSql(sql, [ticket.first_name, ticket.last_name, ticket.email, ticket.ticket_type, ticket.logo, ticket.date, ticket.location, ticket.ticket_hash])
-		.then(() => console.log('Registro insertado'))
-		.catch(e => console.log(e));
-	}
+  addRoom(id:number, key:number, roomname:string){
+  	return this.isReady()
+    .then(()=>{
+      return this.database.executeSql(`INSERT INTO chat_rooms(id, key, roomname) VALUES (${id}, ${key}, '${roomname}');`, []).then((result)=>{
+        if(result.id){
+          return this.getRoom(result.id);
+        }
+      })
+    });
+  }
+  
+  getRoom(id:number){
+  	return this.isReady()
+    .then(()=>{
+      return this.database.executeSql(`SELECT * FROM chat_rooms WHERE id = ${id}`, [])
+      .then((data)=>{
+        if(data.rows.length){
+          return data.rows.item(0);
+        }
+        return null;
+      })
+    })
+  }
 
-	getTicket(){
-	    let sql = 'SELECT * FROM ticket';
-	    return this.db.executeSql(sql, [])
-	    .then(response => {
-	      let ticket = [];
-	      for (let index = 0; index < response.rows.length; index++) {
-	        ticket.push( response.rows.item(index) );
-	      }
-	      console.log('select ticket');
-	      return Promise.resolve( ticket );
-	    })
-	    .catch(error => Promise.reject(error));
-	}
+  getidRooms(){
+	return this.isReady()
+    .then(()=>{
+      return this.database.executeSql("SELECT id from chat_rooms", [])
+      .then((data)=>{
+        let lists = [];
+        for(let i=0; i<data.rows.length; i++){
+          lists.push(data.rows.item(i));
+        }
+        return lists;
+      })
+    })  	
+  }
+  
+  deleteRoom(id:number){
+  	return this.isReady()
+    .then(()=>{
+      return this.database.executeSql(`DELETE FROM chat_rooms WHERE id = ${id}`, [])
+    })
+  }
+
+  addChat(id:number, chat_rooms_id:number, type:string, username:string, message:string, send_date:string, read:number){
+
+  }
+
+  addTodo(description:string, isImportant:boolean, isDone:boolean, listId:number){ }
+  modifyTodo(description:string, isImportant:boolean, isDone:boolean, id:number){ }
+  removeTodo(id:number){ }
 
 }

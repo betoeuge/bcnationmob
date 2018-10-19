@@ -107,5 +107,10 @@ export class BcnationRestProvider {
   getChatRoom(post){
     return this.http.get(this.url_server_chat+'/chat_room?roomkey='+post.roomkey);
   }
+
+  getRoomsUser(post){
+    return this.http.get(this.url_server_chat+'/rooms_by_user?username='+post.username+"&rooms_id="+post.rooms_id);
+  }
+
 }
 

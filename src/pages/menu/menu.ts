@@ -61,12 +61,10 @@ export class MenuPage {
         this.email = val.email;
         this.first_name = val.first_name;
         this.last_name = val.last_name;
-        console.log("si hay valor menu: " + this.email);
       }else{
         this.email = null;
         this.first_name = null;
         this.last_name = null;        
-        console.log("no hay valor menu: " + this.email);
       }
     });
    }

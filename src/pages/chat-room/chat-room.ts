@@ -135,9 +135,7 @@ export class ChatRoomPage {
     this.offStatus = true;
 
     //back to room page
-    this.navCtrl.setRoot(RoomPage, {
-      nickname:this.nickname
-    });
+    this.navCtrl.pop();
   }
   alertExitChat(){
     let alert = this.alertCtrl.create({

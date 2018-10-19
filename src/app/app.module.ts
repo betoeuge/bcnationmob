@@ -37,7 +37,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { SQLite } from '@ionic-native/sqlite';
 
 import { BcnationRestProvider } from '../providers/bcnation-rest/bcnation-rest';
-import { TransformProvider } from '../providers/transform/transform';
+import { DataManagerProvider } from '../providers/data-manager/data-manager';
 import { DataProvider } from '../providers/data/data';
 import { SocketIoModule, SocketIoConfig } from 'ng-socket-io';
 const config: SocketIoConfig = {url: 'http://bcnation.ddns.net:3001', options: {} };
@@ -108,7 +108,7 @@ const config: SocketIoConfig = {url: 'http://bcnation.ddns.net:3001', options: {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BcnationRestProvider,
-    TransformProvider,
+    DataManagerProvider,
     DataProvider,
     InAppBrowser,
     Calendar,

@@ -7,14 +7,25 @@
     Blockchain Nation
   </ion-title>
   <ion-buttons end>
-    <button ion-button (click)="rooms();">
-      <ion-icon name="chatboxes"></ion-icon>
+    <button ion-button (click)="showRooms();">
+      <ion-icon name="chatboxes" color="gold"></ion-icon>
     </button>
   </ion-buttons>
 </ion-toolbar>
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let room of rooms">
+      <button ion-item (click)="joinRoom(room.key, room.roomname)">
+      <ion-avatar item-start>
+        <ion-icon name="people" item-start color="gold" style="font-size: 50px;"></ion-icon>
+      </ion-avatar>
+      <h2 ion-text color="gold">{{ room.roomname }}</h2>
+      </button>
+    </ion-item-sliding>
+  </ion-list>
 
 </ion-content>
